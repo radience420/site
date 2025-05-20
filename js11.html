@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Ряд Фібоначчі</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #83a4d4, #b6fbff);
+      padding: 40px;
+      text-align: center;
+      color: #333;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: auto;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      width: 80%;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #0d47a1;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #1a237e;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ряд Фібоначчі 🔁</h1>
+
+  <div class="card">
+    <input type="number" id="fibInput" placeholder="Скільки чисел показати?">
+    <br>
+    <button onclick="generateFibonacci()">Генерувати</button>
+    <div class="result" id="fibResult"></div>
+  </div>
+
+  <script>
+    function generateFibonacci() {
+      const count = parseInt(document.getElementById("fibInput").value);
+      if (isNaN(count) || count <= 0) {
+        document.getElementById("fibResult").innerText = "Введи число більше 0!";
+        return;
+      }
+
+      const fib = [0];
+      if (count > 1) fib.push(1);
+
+      for (let i = 2; i < count; i++) {
+        fib.push(fib[i - 1] + fib[i - 2]);
+      }
+
+      document.getElementById("fibResult").innerText = `Ряд: ${fib.join(', ')}`;
+    }
+  </script>
+
+</body>
+</html>

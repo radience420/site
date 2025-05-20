@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🔢 Аналіз числа</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f8f9fa, #e9ecef);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px;
+      color: #333;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    input[type=number] {
+      padding: 12px;
+      margin: 15px 0;
+      font-size: 1em;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 1em;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .result {
+      margin-top: 20px;
+      text-align: left;
+      line-height: 1.6;
+      background: #f1f3f5;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔢 Аналіз цифр числа</h1>
+
+  <div class="container">
+    <input type="number" id="numberInput" placeholder="Введіть ціле число" />
+    <button onclick="analyzeNumber()">Аналізувати</button>
+    <p class="error" id="errorMsg"></p>
+    <div class="result" id="resultBox" style="display: none;"></div>
+  </div>
+
+  <script>
+    function getCorrectWord(number) {
+      if (number === 1 || (number > 20 && number % 10 === 1)) return "цифра";
+      if ((number >= 2 && number <= 4) || (number > 20 && [2, 3, 4].includes(number % 10))) return "цифри";
+      return "цифр";
+    }
+
+    function analyzeNumber() {
+      const inputField = document.getElementById("numberInput");
+      const resultBox = document.getElementById("resultBox");
+      const errorMsg = document.getElementById("errorMsg");
+      const input = inputField.value.trim();
+
+      resultBox.style.display = "none";
+      errorMsg.textContent = "";
+
+      if (!/^\d+$/.test(input)) {
+        errorMsg.textContent = "Будь ласка, введіть додатне ціле число.";
+        return;
+      }
+
+      const digits = input.split('').map(Number);
+      const totalDigits = digits.length;
+      const evenCount = digits.filter(d => d % 2 === 0).length;
+      const oddCount = totalDigits - evenCount;
+      const sumDigits = digits.reduce((sum, d) => sum + d, 0);
+
+      resultBox.innerHTML = `
+        ✅ Кількість цифр у числі: <strong>${totalDigits}</strong> ${getCorrectWord(totalDigits)}<br>
+        🔵 Парних цифр: <strong>${evenCount}</strong><br>
+        🔴 Непарних цифр: <strong>${oddCount}</strong><br>
+        🧮 Цифри числа: <strong>${digits.join(' ')}</strong><br>
+        ➕ Сума цифр: <strong>${sumDigits}</strong>
+      `;
+      resultBox.style.display = "block";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Гра: Вгадай Число</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #9face6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px;
+      color: #333;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    #game, #result {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+      margin-top: 20px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input[type=number] {
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 1em;
+      width: 80%;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      background: #6a11cb;
+      background: linear-gradient(to right, #2575fc, #6a11cb);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .info {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎯 Гра: Вгадай Число</h1>
+
+  <div id="setup">
+    <input type="number" id="minInput" placeholder="Мінімальне число" />
+    <input type="number" id="maxInput" placeholder="Максимальне число" />
+    <button onclick="startGame()">Почати гру</button>
+  </div>
+
+  <div id="game">
+    <p class="info" id="hintText"></p>
+    <input type="number" id="guessInput" placeholder="Ваш варіант" />
+    <button onclick="checkGuess()">Перевірити</button>
+    <p class="info" id="attemptsLeft"></p>
+  </div>
+
+  <div id="result">
+    <p id="resultText"></p>
+    <button onclick="location.reload()">Грати ще раз</button>
+  </div>
+
+  <script>
+    let target = 0;
+    let attempts = 10;
+    let min = 0;
+    let max = 0;
+
+    function getRandomInt(min, max) {
+      if (min > max) [min, max] = [max, min];
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function startGame() {
+      min = parseInt(document.getElementById("minInput").value);
+      max = parseInt(document.getElementById("maxInput").value);
+
+      if (isNaN(min) || isNaN(max)) {
+        alert("Введіть коректні числа");
+        return;
+      }
+
+      target = getRandomInt(min, max);
+      console.log("Target: " + target);
+      document.getElementById("setup").style.display = "none";
+      document.getElementById("game").style.display = "flex";
+      document.getElementById("hintText").textContent = `Я загадав число між ${min} і ${max}`;
+      updateAttempts();
+    }
+
+    function updateAttempts() {
+      document.getElementById("attemptsLeft").textContent = `Залишилось спроб: ${attempts}`;
+    }
+
+    function checkGuess() {
+      let guess = parseInt(document.getElementById("guessInput").value);
+      if (isNaN(guess)) {
+        alert("Введіть число!");
+        return;
+      }
+
+      if (guess === target) {
+        endGame(true);
+      } else {
+        attempts--;
+        if (attempts <= 0) {
+          endGame(false);
+        } else {
+          document.getElementById("hintText").textContent =
+            guess > target ? "Меньше!" : "Більше!";
+          updateAttempts();
+          document.getElementById("guessInput").value = "";
+        }
+      }
+    }
+
+    function endGame(won) {
+      document.getElementById("game").style.display = "none";
+      document.getElementById("result").style.display = "flex";
+      document.getElementById("resultText").textContent = won
+        ? `🎉 Вітаю! Ви вгадали число ${target}!`
+        : `😢 Ви програли! Загадане число було: ${target}`;
+    }
+  </script>
+</body>
+</html>

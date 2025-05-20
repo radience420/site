@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Геометрія: Площа та Периметр</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #83a4d4, #b6fbff);
+      color: #333;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .shape-card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      width: 300px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 8px 0;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      width: 80%;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background: #0077ff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #005cd4;
+    }
+
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    img {
+      margin-top: 10px;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Геометрія: Площа і Периметр</h1>
+
+  <div class="container">
+    <!-- Прямокутник -->
+    <div class="shape-card">
+      <h2>Прямокутник</h2>
+      <input type="number" id="rectWidth" placeholder="Ширина (a)">
+      <input type="number" id="rectHeight" placeholder="Висота (b)">
+      <button onclick="calcRectangle()">Обчислити</button>
+      <div class="result" id="rectResult"></div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Rectangle_example.svg/300px-Rectangle_example.svg.png" alt="Прямокутник">
+    </div>
+
+    <!-- Трикутник -->
+    <div class="shape-card">
+      <h2>Трикутник</h2>
+      <input type="number" id="triA" placeholder="Сторона a">
+      <input type="number" id="triB" placeholder="Сторона b">
+      <input type="number" id="triC" placeholder="Сторона c">
+      <button onclick="calcTriangle()">Обчислити</button>
+      <div class="result" id="triResult"></div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Triangle.Equilateral.svg/300px-Triangle.Equilateral.svg.png" alt="Трикутник">
+    </div>
+  </div>
+
+  <script>
+    function calcRectangle() {
+      const a = parseFloat(document.getElementById("rectWidth").value);
+      const b = parseFloat(document.getElementById("rectHeight").value);
+      if (a > 0 && b > 0) {
+        const area = a * b;
+        const perimeter = 2 * (a + b);
+        document.getElementById("rectResult").innerText = `Площа: ${area}, Периметр: ${perimeter}`;
+      } else {
+        document.getElementById("rectResult").innerText = "Введіть коректні значення!";
+      }
+    }
+
+    function calcTriangle() {
+      const a = parseFloat(document.getElementById("triA").value);
+      const b = parseFloat(document.getElementById("triB").value);
+      const c = parseFloat(document.getElementById("triC").value);
+      if (a > 0 && b > 0 && c > 0 && a + b > c && a + c > b && b + c > a) {
+        const p = (a + b + c) / 2;
+        const area = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+        const perimeter = a + b + c;
+        document.getElementById("triResult").innerText = `Площа: ${area.toFixed(2)}, Периметр: ${perimeter}`;
+      } else {
+        document.getElementById("triResult").innerText = "Неможливий трикутник!";
+      }
+    }
+  </script>
+
+</body>
+</html>

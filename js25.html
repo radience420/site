@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>setInterval() виведення тексту</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ff9a8b, #ff6a00);
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+
+    #textOutput {
+      font-size: 30px;
+      font-weight: bold;
+      color: #000;
+      margin-top: 20px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #673ab7;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #512da8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Виведення тексту через setInterval()</h1>
+
+  <div class="card">
+    <button onclick="startTextInterval()">Запустити виведення тексту</button>
+    <div id="textOutput"></div>
+  </div>
+
+  <script>
+    const textArray = [
+      "Привіт, світ!",
+      "Це тест з setInterval()",
+      "Текст змінюється кожні 2 секунди",
+      "Успіхи в програмуванні!",
+      "Час працювати!"
+    ];
+
+    let currentTextIndex = 0;
+    let interval;
+
+    function startTextInterval() {
+      const textOutput = document.getElementById('textOutput');
+      
+      // Очищаємо попередній інтервал, якщо він існує
+      if (interval) clearInterval(interval);
+
+      interval = setInterval(() => {
+        textOutput.textContent = textArray[currentTextIndex];
+        currentTextIndex = (currentTextIndex + 1) % textArray.length;
+      }, 2000); // Текст змінюється кожні 2 секунди
+    }
+  </script>
+
+</body>
+</html>

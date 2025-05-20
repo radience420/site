@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Емоджі з Юнікодом</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      text-align: center;
+      padding: 40px;
+      color: #333;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      display: inline-block;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      width: 60%;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background: #ff6600;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #cc5200;
+    }
+
+    .emoji {
+      margin-top: 30px;
+      font-size: 100px;
+    }
+
+    .code-label {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Емоджі з Юнікодом 🎉</h1>
+
+  <div class="card">
+    <p>Введи код емоджі (наприклад: <strong>1F602</strong>)</p>
+    <input id="emojiCode" placeholder="Юнікод без U+ (тільки 1F...)">
+    <br>
+    <button onclick="showEmoji()">Показати</button>
+    <div class="emoji" id="emojiOutput">😀</div>
+    <div class="code-label" id="codeLabel"></div>
+  </div>
+
+  <script>
+    function showEmoji() {
+      const code = document.getElementById("emojiCode").value.trim();
+      if (/^[0-9A-Fa-f]+$/.test(code)) {
+        const emoji = String.fromCodePoint(parseInt(code, 16));
+        document.getElementById("emojiOutput").textContent = emoji;
+        document.getElementById("codeLabel").textContent = `Юнікод: U+${code.toUpperCase()}`;
+      } else {
+        document.getElementById("emojiOutput").textContent = '❌';
+        document.getElementById("codeLabel").textContent = 'Некоректний код!';
+      }
+    }
+  </script>
+
+</body>
+</html>

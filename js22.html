@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Генерація фігур</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #00bcd4, #8e24aa);
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+
+    canvas {
+      border: 2px solid #fff;
+      margin-top: 20px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #673ab7;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #512da8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Генерація фігур 🎨</h1>
+
+  <div class="card">
+    <button onclick="generateCircle()">Коло</button>
+    <button onclick="generateTriangle()">Трикутник</button>
+    <button onclick="generateRectangle()">Прямокутник</button>
+    <button onclick="generatePentagon()">П’ятикутник</button>
+    <canvas id="canvas" width="500" height="500"></canvas>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    function generateCircle() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.arc(250, 250, 100, 0, 2 * Math.PI);
+      ctx.fillStyle = 'green';
+      ctx.fill();
+      ctx.stroke();
+    }
+
+    function generateTriangle() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.moveTo(250, 150); // Верхівка
+      ctx.lineTo(150, 350); // Лівий кут
+      ctx.lineTo(350, 350); // Правий кут
+      ctx.closePath();
+      ctx.fillStyle = 'blue';
+      ctx.fill();
+      ctx.stroke();
+    }
+
+    function generateRectangle() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'red';
+      ctx.fillRect(150, 150, 200, 100); // Прямокутник
+    }
+
+    function generatePentagon() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const radius = 100;
+      const centerX = 250;
+      const centerY = 250;
+      ctx.beginPath();
+
+      for (let i = 0; i < 5; i++) {
+        const angle = (i * 2 * Math.PI) / 5;
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
+        ctx.lineTo(x, y);
+      }
+
+      ctx.closePath();
+      ctx.fillStyle = 'orange';
+      ctx.fill();
+      ctx.stroke();
+    }
+  </script>
+
+</body>
+</html>

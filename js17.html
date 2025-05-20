@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Знаходження підрядка</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ff9966, #ff5e62);
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      width: 80%;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #d81b60;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #1e88e5;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Знаходження підрядка 🔍</h1>
+
+  <div class="card">
+    <input type="text" id="mainString" placeholder="Введіть головний рядок">
+    <br>
+    <input type="text" id="substring" placeholder="Введіть підрядок для пошуку">
+    <br>
+    <button onclick="findSubstring()">Знайти підрядок</button>
+    <div class="result" id="searchResult"></div>
+  </div>
+
+  <script>
+    function findSubstring() {
+      const mainString = document.getElementById("mainString").value;
+      const substring = document.getElementById("substring").value;
+      const output = document.getElementById("searchResult");
+
+      if (mainString.includes(substring)) {
+        output.innerText = `"${substring}" знайдено в рядку! 🎉`;
+      } else {
+        output.innerText = `"${substring}" не знайдено в рядку. 🚫`;
+      }
+    }
+  </script>
+
+</body>
+</html>

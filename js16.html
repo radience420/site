@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Знайти спам</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      padding: 40px;
+      text-align: center;
+      color: #333;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      width: 80%;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #ff5722;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #e64a19;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #d32f2f;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Знайти спам 🛑</h1>
+
+  <div class="card">
+    <input type="text" id="spamInput" placeholder="Введіть повідомлення">
+    <br>
+    <button onclick="checkSpam()">Перевірити на спам</button>
+    <div class="result" id="spamResult"></div>
+  </div>
+
+  <script>
+    function checkSpam() {
+      const spamWords = ["позичка", "безкоштовно", "виграй зараз", "швидка позика"];
+      const userInput = document.getElementById("spamInput").value.toLowerCase();
+      const output = document.getElementById("spamResult");
+
+      if (!userInput) {
+        output.innerText = "Будь ласка, введіть повідомлення для перевірки!";
+        return;
+      }
+
+      let foundSpam = false;
+
+      for (let i = 0; i < spamWords.length; i++) {
+        if (userInput.includes(spamWords[i])) {
+          foundSpam = true;
+          break;
+        }
+      }
+
+      if (foundSpam) {
+        output.innerText = "Це спам! 🚫";
+      } else {
+        output.innerText = "Це не спам!";
+      }
+    }
+  </script>
+
+</body>
+</html>

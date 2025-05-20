@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Сходинки з символу</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      padding: 40px;
+      text-align: center;
+      color: #333;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      width: 80%;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #ff5722;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #e64a19;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #d32f2f;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Сходинки з символу ⬆️</h1>
+
+  <div class="card">
+    <input type="text" id="symbolInput" placeholder="Введи символ">
+    <br>
+    <input type="number" id="heightInput" placeholder="Введи висоту">
+    <br>
+    <button onclick="generateStairs()">Побудувати сходинки</button>
+    <div class="result" id="stairsResult"></div>
+  </div>
+
+  <script>
+    function generateStairs() {
+      const symbol = document.getElementById("symbolInput").value;
+      const height = parseInt(document.getElementById("heightInput").value);
+      const output = document.getElementById("stairsResult");
+
+      if (!symbol || isNaN(height) || height <= 0) {
+        output.innerText = "Введи символ та висоту (більше 0)!";
+        return;
+      }
+
+      let result = '';
+      for (let i = 1; i <= height; i++) {
+        result += symbol.repeat(i) + '<br>';
+      }
+
+      output.innerHTML = result;
+    }
+  </script>
+
+</body>
+</html>

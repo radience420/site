@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🔍 Пошук підрядка</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #ffecd2, #fcb69f);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input, textarea, button {
+      font-size: 1em;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin: 10px 0;
+      width: 90%;
+    }
+
+    button {
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e64a19;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.1em;
+      color: #444;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 Пошук підрядка</h1>
+    <textarea id="textInput" rows="4" placeholder="Введіть текст для пошуку...">бредуть бобри в сирі бори. бобри хоробрі, а для бобрят добрі</textarea>
+    <br>
+    <input type="text" id="substringInput" placeholder="Підрядок для пошуку" value="ри"/>
+    <br>
+    <button onclick="searchSubstring()">Знайти всі входження</button>
+    <div class="result" id="resultBox"></div>
+  </div>
+
+  <script>
+    function findAllOccurrences(text, substring) {
+      let positions = [];
+      let start = 0;
+
+      while ((start = text.indexOf(substring, start)) !== -1) {
+        positions.push(start);
+        start += 1;
+      }
+
+      return positions;
+    }
+
+    function searchSubstring() {
+      const text = document.getElementById('textInput').value;
+      const substring = document.getElementById('substringInput').value;
+      const resultBox = document.getElementById('resultBox');
+
+      const positions = findAllOccurrences(text, substring);
+
+      if (positions.length > 0) {
+        resultBox.innerText = `🔎 Знайдено ${positions.length} входжень на позиціях: ${positions.join(", ")}`;
+      } else {
+        resultBox.innerText = "🚫 Підрядок не знайдено.";
+      }
+    }
+  </script>
+</body>
+</html>
