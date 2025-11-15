@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Таблиця множення</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #d4fc79, #96e6a1);
+      padding: 40px;
+      text-align: center;
+      color: #333;
+    }
+
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      width: 80%;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #43a047;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #2e7d32;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #1b5e20;
+      text-align: left;
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Таблиця множення 🧮</h1>
+
+  <div class="card">
+    <input type="number" id="multInput" placeholder="Введи число (наприклад 7)">
+    <br>
+    <button onclick="generateTable()">Показати таблицю</button>
+    <div class="result" id="multResult"></div>
+  </div>
+
+  <script>
+    function generateTable() {
+      const num = parseInt(document.getElementById("multInput").value);
+      const output = document.getElementById("multResult");
+      
+      if (isNaN(num)) {
+        output.innerText = "Введи коректне число!";
+        return;
+      }
+
+      let result = '';
+      for (let i = 1; i <= 10; i++) {
+        result += `${num} × ${i} = ${num * i}<br>`;
+      }
+
+      output.innerHTML = result;
+    }
+  </script>
+
+</body>
+</html>

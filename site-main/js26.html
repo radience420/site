@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>setInterval() виведення зображень</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: auto;
+    }
+
+    img {
+      width: 300px;
+      height: 300px;
+      border-radius: 20px;
+      transition: opacity 0.5s ease;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #673ab7;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #512da8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Виведення зображень через setInterval()</h1>
+
+  <div class="card">
+    <button onclick="startImageInterval()">Запустити зміну зображень</button>
+    <img id="image" src="https://via.placeholder.com/300" alt="Image">
+  </div>
+
+  <script>
+    const images = [
+      "https://via.placeholder.com/300/FF5733/FFFFFF?text=Image+1",
+      "https://via.placeholder.com/300/33FF57/FFFFFF?text=Image+2",
+      "https://via.placeholder.com/300/3357FF/FFFFFF?text=Image+3",
+      "https://via.placeholder.com/300/FFFF33/FFFFFF?text=Image+4"
+    ];
+
+    let currentImageIndex = 0;
+    let interval;
+
+    function startImageInterval() {
+      const imageElement = document.getElementById('image');
+
+      // Очищаємо попередній інтервал, якщо він існує
+      if (interval) clearInterval(interval);
+
+      interval = setInterval(() => {
+        imageElement.src = images[currentImageIndex];
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+      }, 2000); // Зображення змінюється кожні 2 секунди
+    }
+  </script>
+
+</body>
+</html>

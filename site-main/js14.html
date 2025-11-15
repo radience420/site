@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Числа в діапазоні</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #84fab0, #8fd3f4);
+      padding: 40px;
+      text-align: center;
+      color: #333;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      width: 80%;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #009688;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #00796b;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c6b6d;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Числа в діапазоні 🔢</h1>
+
+  <div class="card">
+    <input type="number" id="startInput" placeholder="Початкове число">
+    <br>
+    <input type="number" id="endInput" placeholder="Кінцеве число">
+    <br>
+    <button onclick="generateRange()">Показати числа</button>
+    <div class="result" id="rangeResult"></div>
+  </div>
+
+  <script>
+    function generateRange() {
+      const start = parseInt(document.getElementById("startInput").value);
+      const end = parseInt(document.getElementById("endInput").value);
+      const output = document.getElementById("rangeResult");
+
+      if (isNaN(start) || isNaN(end)) {
+        output.innerText = "Введіть коректні числа!";
+        return;
+      }
+
+      if (start > end) {
+        output.innerText = "Початкове число повинно бути менше кінцевого!";
+        return;
+      }
+
+      let result = '';
+      for (let i = start; i <= end; i++) {
+        result += i + ' ';
+      }
+
+      output.innerText = `Числа в діапазоні: ${result}`;
+    }
+  </script>
+
+</body>
+</html>

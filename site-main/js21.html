@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Столиці і Населення</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #00b4db, #0083b0);
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      width: 80%;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #673ab7;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #512da8;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Столиці і Населення 🌍</h1>
+
+  <div class="card">
+    <input type="text" id="countryInput" placeholder="Введіть країну (напр. Україна)">
+    <br>
+    <button onclick="getCapitalAndPopulation()">Дізнатись столицю та населення</button>
+    <div class="result" id="countryResult"></div>
+  </div>
+
+  <script>
+    const countryData = {
+      "Україна": { capital: "Київ", population: "41 мільйонів" },
+      "США": { capital: "Вашингтон", population: "331 мільйонів" },
+      "Франція": { capital: "Париж", population: "67 мільйонів" },
+      "Німеччина": { capital: "Берлін", population: "83 мільйони" },
+      "Японія": { capital: "Токіо", population: "126 мільйонів" },
+      "Італія": { capital: "Рим", population: "60 мільйонів" },
+      "Іспанія": { capital: "Мадрид", population: "47 мільйонів" },
+      "Канада": { capital: "Оттава", population: "38 мільйонів" }
+    };
+
+    function getCapitalAndPopulation() {
+      const country = document.getElementById("countryInput").value.trim();
+      const result = document.getElementById("countryResult");
+
+      if (countryData[country]) {
+        const { capital, population } = countryData[country];
+        result.innerHTML = `Столиця ${country}: ${capital}<br>Населення: ${population}`;
+      } else {
+        result.innerText = "Цю країну не вдалося знайти в базі даних.";
+      }
+    }
+  </script>
+
+</body>
+</html>

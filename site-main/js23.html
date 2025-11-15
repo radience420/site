@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Шахівниця</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(8, 50px);
+      grid-template-rows: repeat(8, 50px);
+      gap: 0;
+      margin: auto;
+    }
+
+    .cell {
+      width: 50px;
+      height: 50px;
+      background-color: white;
+    }
+
+    .cell.black {
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Шахівниця ♟️</h1>
+
+  <div class="board" id="chessBoard"></div>
+
+  <script>
+    function generateChessBoard() {
+      const board = document.getElementById('chessBoard');
+
+      for (let row = 0; row < 8; row++) {
+        for (let col = 0; col < 8; col++) {
+          const cell = document.createElement('div');
+          cell.classList.add('cell');
+          
+          // Чорні клітинки (коли сума індексів непарна)
+          if ((row + col) % 2 !== 0) {
+            cell.classList.add('black');
+          }
+          
+          board.appendChild(cell);
+        }
+      }
+    }
+
+    generateChessBoard(); // Генерація шахівниці
+  </script>
+
+</body>
+</html>

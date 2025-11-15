@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Об’єкти: Зарплата</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      width: 80%;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #673ab7;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #512da8;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Зарплата співробітників 💼💰</h1>
+
+  <div class="card">
+    <input type="text" id="employeesInput" placeholder="Введіть зарплати співробітників через кому (напр. 3000, 2500, 4000)">
+    <br>
+    <button onclick="processSalaries()">Обробити зарплати</button>
+    <div class="result" id="salaryResult"></div>
+  </div>
+
+  <script>
+    function processSalaries() {
+      const input = document.getElementById("employeesInput").value;
+      const output = document.getElementById("salaryResult");
+
+      if (!input) {
+        output.innerText = "Будь ласка, введіть зарплати!";
+        return;
+      }
+
+      const salaries = input.split(',').map(salary => parseInt(salary.trim()));
+      if (salaries.some(isNaN)) {
+        output.innerText = "Будь ласка, введіть правильні числа для зарплат!";
+        return;
+      }
+
+      const highestSalary = Math.max(...salaries);
+      const totalSalary = salaries.reduce((acc, salary) => acc + salary, 0);
+      const highestIndex = salaries.indexOf(highestSalary);
+      
+      output.innerHTML = `
+        Найбільша зарплата: ${highestSalary} (Співробітник ${highestIndex + 1})<br>
+        Загальна сума зарплат: ${totalSalary}
+      `;
+    }
+  </script>
+
+</body>
+</html>

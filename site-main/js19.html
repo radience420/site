@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Номер букви в алфавіті</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      width: 80%;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #3f51b5;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #303f9f;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Номер букви в алфавіті 🔤</h1>
+
+  <div class="card">
+    <input type="text" id="letterInput" maxlength="1" placeholder="Введіть букву">
+    <br>
+    <button onclick="findLetterPosition()">Знайти номер букви</button>
+    <div class="result" id="letterResult"></div>
+  </div>
+
+  <script>
+    function findLetterPosition() {
+      const letter = document.getElementById("letterInput").value.toLowerCase();
+      const output = document.getElementById("letterResult");
+
+      if (!letter || letter.length !== 1 || !/[a-zA-Z]/.test(letter)) {
+        output.innerText = "Будь ласка, введіть одну букву!";
+        return;
+      }
+
+      const position = letter.charCodeAt(0) - 96;  // Знаходимо позицію букви в алфавіті (для малих літер)
+
+      if (position > 0 && position <= 26) {
+        output.innerText = `Буква "${letter}" знаходиться на позиції ${position} в алфавіті.`;
+      } else {
+        output.innerText = "Невірний символ. Введіть літеру латинського алфавіту.";
+      }
+    }
+  </script>
+
+</body>
+</html>

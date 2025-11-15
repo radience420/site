@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Факторіал числа</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fbd3e9, #bb377d);
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.1);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 400px;
+      margin: auto;
+      backdrop-filter: blur(10px);
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      width: 80%;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #e91e63;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Факторіал числа 💥</h1>
+
+  <div class="card">
+    <input type="number" id="factorialInput" placeholder="Введи число n (наприклад: 5)">
+    <br>
+    <button onclick="calculateFactorial()">Порахувати n!</button>
+    <div class="result" id="factorialResult"></div>
+  </div>
+
+  <script>
+    function calculateFactorial() {
+      const n = parseInt(document.getElementById("factorialInput").value);
+      if (isNaN(n) || n < 0) {
+        document.getElementById("factorialResult").innerText = "Введи додатне ціле число!";
+        return;
+      }
+
+      let result = 1;
+      for (let i = 2; i <= n; i++) {
+        result *= i;
+      }
+
+      document.getElementById("factorialResult").innerText = `${n}! = ${result}`;
+    }
+  </script>
+
+</body>
+</html>

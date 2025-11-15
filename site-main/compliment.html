@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliment Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #complimentContainer {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .compliment {
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 1.2em;
+            border-left: 5px solid #ff7e5f;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background: #ff7e5f;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background: #ff6b4a;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌟 Get Your Compliments 🌟</h1>
+    <button onclick="generateCompliments()">Generate Compliments</button>
+    <div id="complimentContainer"></div>
+
+    <script>
+        const compliments = [
+            "brilliant",
+            "charming",
+            "amazing",
+            "talented",
+            "inspiring",
+            "radiant",
+            "confident",
+            "witty",
+            "creative",
+            "kind",
+            "exceptional",
+            "unique",
+            "smart",
+            "thoughtful",
+            "strong"
+        ];
+
+        function generateCompliments(count = 5) {
+            const container = document.getElementById('complimentContainer');
+            container.innerHTML = ''; // чистимо попередні
+
+            for (let i = 0; i < count; i++) {
+                const randIndex = Math.floor(Math.random() * compliments.length);
+                const compliment = document.createElement('div');
+                compliment.className = 'compliment';
+                compliment.textContent = `${i + 1}. ${compliments[randIndex]}`;
+                container.appendChild(compliment);
+            }
+        }
+    </script>
+</body>
+</html>

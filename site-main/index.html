@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мій сайт — Біографія та роботи</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f0f0;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #0ddfea;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+
+    header h1 {
+      font-size: 40px;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 18px;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+      padding: 20px;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .card h2 {
+      margin: 20px 0;
+      font-size: 24px;
+    }
+
+    .card p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    footer a {
+      color: #ff6a00;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Мій сайт</h1>
+  <p>Біографія та роботи, які я створив за допомогою JavaScript</p>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <img src="nt.jpg" alt="Моє фото">
+    <h2>Моя біографія</h2>
+    <p>Привіт! Мене звати Родіон. Я захоплююсь програмуванням на JavaScript, створюю веб-додатки. Моя мета — створювати прості і корисні інструменти для користувачів.</p>
+  </div>
+
+  <div class="card">
+    <h2>Мої роботи</h2>
+    <p>Нижче наведено кілька моїх проектів, над якими я працював:</p>
+
+    <ul></ul>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2025 Мій сайт | <a href="https://www.linkedin.com" target="_blank">Мій профіль</a></p>
+</footer>
+
+<script>
+  const projects = [
+    ["js6.html", "Площа та периметр"],
+    ["js7.html", "Емоджі з кодом"],
+    ["js8.html", "Сума чисел"],
+    ["js9.html", "Степінь"],
+    ["js10.html", "Факторіал"],
+    ["js11.html", "Фібоначчі"],
+    ["js12.html", "Таблиця множення"],
+    ["js13.html", "Сходинки із символу"],
+    ["js1.html", "Вгадай число"],
+    ["js14.html", "Числа в діапазоні"],
+    ["js15.html", "Сума чисел в діапазоні"],
+    ["js16.html", "Знайти спам"],
+    ["js17.html", "Пошук підрядка"],
+    ["js3.html", "Скільки цифр у числі"],
+    ["compliment.html", "Компліменти"],
+    ["js19.html", "Номер букви"],
+    ["js20.html", "Об’єкти: зарплати"],
+    ["js21.html", "Столиці і населення"],
+    ["js22.html", "Генерація фігур"],
+    ["js23.html", "Шахівниця"],
+    ["js24.html", "Canvas"],
+    ["js25.html", "setInterval — текст"],
+    ["js26.html", "setInterval — зображення"],
+    ["js27.html", "setInterval — кольори"],
+    ["js28.html", "Рух зображення"]
+  ];
+
+  const container = document.createElement("div");
+  container.style.display = "flex";
+  container.style.flexDirection = "column";
+  container.style.gap = "10px";
+  container.style.marginTop = "20px";
+
+  function getRandomColor() {
+    return "#" + Math.floor(Math.random() * 16777215).toString(16);
+  }
+
+  projects.forEach(([link, text]) => {
+    const btn = document.createElement("a");
+    btn.href = link;
+    btn.textContent = text;
+
+    btn.style.display = "block";
+    btn.style.padding = "12px";
+    btn.style.borderRadius = "8px";
+
+    btn.style.color = "black";
+
+    btn.style.fontWeight = "bold";
+    btn.style.textDecoration = "none";
+    btn.style.textAlign = "center";
+    btn.style.background = getRandomColor();
+    btn.style.transition = "0.2s";
+
+    btn.onmouseenter = () => btn.style.opacity = "0.8";
+    btn.onmouseleave = () => btn.style.opacity = "1";
+
+    container.appendChild(btn);
+  });
+
+  document.querySelector(".card ul").replaceWith(container);
+</script>
+
+</body>
+</html>

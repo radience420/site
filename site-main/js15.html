@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Сума чисел в діапазоні</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f0c27b, #4b1248);
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      width: 80%;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #673ab7;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #512da8;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Сума чисел в діапазоні ➕</h1>
+
+  <div class="card">
+    <input type="number" id="startSumInput" placeholder="Початкове число">
+    <br>
+    <input type="number" id="endSumInput" placeholder="Кінцеве число">
+    <br>
+    <button onclick="calculateSum()">Обчислити суму</button>
+    <div class="result" id="sumResult"></div>
+  </div>
+
+  <script>
+    function calculateSum() {
+      const start = parseInt(document.getElementById("startSumInput").value);
+      const end = parseInt(document.getElementById("endSumInput").value);
+      const output = document.getElementById("sumResult");
+
+      if (isNaN(start) || isNaN(end)) {
+        output.innerText = "Введіть коректні числа!";
+        return;
+      }
+
+      if (start > end) {
+        output.innerText = "Початкове число повинно бути менше кінцевого!";
+        return;
+      }
+
+      let sum = 0;
+      for (let i = start; i <= end; i++) {
+        sum += i;
+      }
+
+      output.innerText = `Сума чисел в діапазоні: ${sum}`;
+    }
+  </script>
+
+</body>
+</html>

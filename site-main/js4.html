@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎨 Робота з масивом кольорів</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #ffe0f0);
+      margin: 0;
+      padding: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    .output {
+      margin-top: 20px;
+      font-size: 1.1em;
+      padding: 15px;
+      background-color: #f7f7f7;
+      border-radius: 10px;
+      min-height: 60px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 10px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .step {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎨 Робота з кольорами</h1>
+    <div class="buttons">
+      <button onclick="showColors()">Показати масив</button>
+      <button onclick="pushColor()">Додати 'Red'</button>
+      <button onclick="changeColor()">Замінити передостанній на 'Black'</button>
+      <button onclick="shiftColor()">Видалити перший</button>
+      <button onclick="unshiftColors()">Додати 'Green' і 'Blue' на початок</button>
+    </div>
+
+    <div class="step" id="stepText"></div>
+    <div class="output" id="outputBox"></div>
+  </div>
+
+  <script>
+    let colors = ["жовтий", "чорний", "червоний"];
+    let step = 1;
+
+    function updateDisplay(text) {
+      document.getElementById("outputBox").innerText = colors.join(", ");
+      document.getElementById("stepText").innerText = `Крок ${step++}: ${text}`;
+    }
+
+    function showColors() {
+      updateDisplay("Початковий масив кольорів");
+    }
+
+    function pushColor() {
+      colors.push("Red");
+      updateDisplay("Додали 'Red' в кінець");
+    }
+
+    function changeColor() {
+      if (colors.length >= 2) {
+        colors[colors.length - 2] = "Black";
+        updateDisplay("Змінили передостанній елемент на 'Black'");
+      } else {
+        updateDisplay("Недостатньо елементів для заміни");
+      }
+    }
+
+    function shiftColor() {
+      colors.shift();
+      updateDisplay("Видалили перший елемент");
+    }
+
+    function unshiftColors() {
+      colors.unshift("Green", "Blue");
+      updateDisplay("Додали 'Green' і 'Blue' на початок");
+    }
+  </script>
+</body>
+</html>
